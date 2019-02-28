@@ -1,0 +1,7 @@
+node_modules
+.idea
+.vc
+dist
+build
+public
+yarn-error.log
