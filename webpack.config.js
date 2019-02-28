@@ -9,11 +9,14 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const argv = require('yargs').argv;
+const isDevelop = argv.development;
 const outputPath = path.resolve(__dirname, './dist');
 
 module.exports = {
+    mode: isDevelop ? 'development' : 'production',
     entry: {
-        app: [path.resolve(__dirname, './src/indexReducer.js')]
+        app: [path.resolve(__dirname, './src/index.js')]
     },
     devtool: 'inline-cheap-source-map',
     resolve: {
@@ -38,7 +41,9 @@ module.exports = {
                 exclude: /\node_modules/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader,
+                        loader: isDevelop
+                            ? 'style-loader'
+                            : MiniCssExtractPlugin.loader,
                         options: {
                             sourceMap: true
                         }
@@ -73,12 +78,31 @@ module.exports = {
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, './src/assets/images'),
                 use: 'url-loader?limit=10000&name=img/[name]-[hash].[ext]'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: ['file-loader']
             }
         ]
     },
     plugins: [
         new CleanWebpackPlugin(['./dist']),
         new HtmlWebpackPlugin({
+            minify: isDevelop ? false : {
+                html5: true,
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true,
+                minifyURLs: false,
+                removeAttributeQuotes: true,
+                removeComments: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributese: true,
+                useShortDoctype: true
+            },
             template: path.join(__dirname, './src/assets/index.html'),
             filename: 'index.html',
             path: outputPath
