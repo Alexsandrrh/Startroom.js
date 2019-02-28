@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {render} from 'react-dom';
+import {createStore} from 'redux';
+import allReducers from './reducers/index.js';
+import App from './App';
 import './assets/sass/main.scss';
 
-class App extends Component{
-    render() {
-        return (<h1>Say Helllo</h1>)
-    }
-}
+const store = createStore(allReducers);
 
-render(<App/>, document.getElementById('app-x'))
+console.log(store.getState());
+
+render(<App store={store}/>, document.getElementById('app-x'));
