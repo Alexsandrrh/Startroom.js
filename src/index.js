@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {createStore} from 'redux';
-import allReducers from './reducers/index.js';
+import allReducers from './reducers/indexReducer.js';
 import App from './App';
 import './assets/sass/main.scss';
 

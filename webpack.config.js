@@ -13,7 +13,7 @@ const outputPath = path.resolve(__dirname, './dist');
 
 module.exports = {
     entry: {
-        app: [path.resolve(__dirname, './src/index.js')]
+        app: [path.resolve(__dirname, './src/indexReducer.js')]
     },
     devtool: 'inline-cheap-source-map',
     resolve: {
