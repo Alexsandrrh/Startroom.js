@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
-
-export default class App extends Component{
-    constructor (props) {
-        super (props);
-
-        this.state = {
-            store : props.store
-        };
-    }
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+class App extends Component {
     render() {
-        return (<Provider store={this.state.store}>
-                    <h3>hello</h3>
-                </Provider>)
+        return <Router />;
     }
 }
 
+const mapStateToProps = state => {
+    return {};
+};
 
+const mapDispatchToProps = dispatch => {
+    return {};
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
