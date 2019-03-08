@@ -37,9 +37,7 @@ module.exports = {
                 exclude: /\node_modules/,
                 use: [
                     {
-                        loader: isDevelop
-                            ? 'style-loader'
-                            : MiniCssExtractPlugin.loader,
+                        loader: isDevelop ? 'style-loader' : MiniCssExtractPlugin.loader,
                         options: { sourceMap: true }
                     },
                     { loader: 'css-loader', options: { sourceMap: true } },
