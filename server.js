@@ -1,10 +1,11 @@
 const express = require('express');
+
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const argv = require('yargs');
 
-const argv = require('yargs').argv;
 const isDevelop = argv.development;
 
 app.use(bodyParser.urlencoded({ extended: true }));

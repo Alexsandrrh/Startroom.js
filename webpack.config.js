@@ -18,6 +18,7 @@ const optimizationConfig = {
         new OptimizeCSSAssetsPlugin()
     ]
 };
+
 module.exports = {
     mode: isDevelop ? 'development' : 'production',
     entry: { app: [path.resolve(__dirname, './src/index.js')] },
