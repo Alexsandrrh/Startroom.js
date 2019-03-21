@@ -7,10 +7,11 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "server": "node server.js",
+        "server": "nodemon server.js",
         "build": "webpack --production",
         "server-client": "node server.js --development",
-        "client": "webpack-dev-server --development --open"
+        "client": "webpack-dev-server --development --open --local --debug",
+        "production": "webpack --production && node server.js"
     },
     "devDependencies": {
         "@babel/core": "^7.3.4",
