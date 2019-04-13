@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class App extends Component {
     render() {
-        return (<div>
-                    <p></p>
-                    <div>
-                        Hello, I'm boilerplate for React.js
-                    </div>
-                </div>);
+        return (
+            <div>
+                <h2>Welcome to boilerplate Startroom.js</h2>
+            </div>
+        );
     }
 }
 
-const mapStateToProps = state => {
-    return {};
-};
-
-const mapDispatchToProps = dispatch => {
-    return {};
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App);
+export default App;

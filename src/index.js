@@ -10,14 +10,11 @@ import rootReducers from './reducers/rootReducer';
 import App from './App';
 import './assets/sass/main.scss';
 
-const store = createStore(
-    rootReducers,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)));
 
 render(
     <Provider store={store}>
         <App />
     </Provider>,
-    document.getElementById('app-component')
+    document.getElementById('app')
 );

@@ -1,2 +1,2 @@
 # Startroom.js
-Boilerplate for react-redux with middleware platform
+Boilerplate for react-redux
