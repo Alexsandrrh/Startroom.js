@@ -3,7 +3,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -14,38 +14,10 @@ const isLocal = argv.local;
 const outputPath = path.resolve(__dirname, './dist');
 const optimizationConfig = {
     minimize: true,
-    minimizer: [
-        new UglifyJsPlugin({
-            cache: true,
-            parallel: true,
-            sourceMap: false,
-            uglifyOptions: {
-                output: {
-                    comments: false
-                },
-                compress: {
-                    warnings: false,
-                    ie8: true,
-                    conditionals: true,
-                    unused: true,
-                    comparisons: true,
-                    sequences: true,
-                    dead_code: true,
-                    evaluate: true,
-                    if_return: true,
-                    join_vars: true
-                }
-            }
-        }),
-        new OptimizeCSSAssetsPlugin()
-    ]
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()]
 };
 
-const configEntry = { app: ['@babel/polyfill', path.resolve(__dirname, './src/index.js')] };
-
-if (isDevelop && !isLocal) {
-    configEntry.app.push('webpack-hot-middleware/client');
-}
+const configEntry = { app: path.resolve(__dirname, './src/index.js') };
 
 module.exports = {
     mode: isDevelop ? 'development' : 'production',
