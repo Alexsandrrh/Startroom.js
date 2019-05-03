@@ -2,18 +2,29 @@ import '@babel/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import rootReducers from './reducers/rootReducer';
+import rootStore from './store';
 import App from './App';
 import './assets/sass/main.scss';
 
-const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(rootStore, applyMiddleware(thunk));
+
+// eslint-disable-next-line
+console.warn('INITIAL STORE : ', store.getState());
+
+const AppPlace = document.getElementById('startroom-plate');
 
 render(
     <Provider store={store}>
         <App />
     </Provider>,
-    document.getElementById('app')
+    AppPlace
 );
+
+if (module.hot) {
+    module.hot.accept('./App', () => {
+        const StartroomApp = require('./App');
+        render(<StartroomApp />, AppPlace);
+    });
+}
